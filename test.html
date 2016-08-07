@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        body {
+            background: #2a2a2a;
+        }
+        #canvas {
+            width: 900px;
+            height:500px;
+            margin: 0 auto;
+            margin-top: 80px;
+            background: #2a2a2a;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="900" height="500">
+    </canvas>
+</body>
+<script src="wiggle.js"></script>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = null;
+    if(canvas.getContext) {
+        ctx = canvas.getContext('2d');
+    }
+
+    var w = new Wiggle(250, 2, ctx);
+    var x = 0;
+    var ppoint = [0, 0];
+    function log() {
+        ctx.strokeStyle='rgba(18, 252, 255, 0.1)';
+        ctx.beginPath();
+        ctx.arc(450, 200, 125, 0, 360);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.fillStyle = "rgba(46, 46, 46, 0.1)";
+        ctx.fillRect(0, 0, 900, 500);
+        var num = w.getNum();
+        console.log()
+        ctx.strokeStyle='#fff';
+        ctx.lineWidth=2;
+        ctx.lineCap='square';
+        ctx.beginPath();
+        ctx.moveTo(450+ppoint[0], 200+ppoint[1]);
+        ctx.lineTo(450+num[0], 200+num[1]);
+        ctx.stroke();
+        ctx.closePath();
+        ppoint[0] = num[0];
+        ppoint[1] = num[1];
+        requestAnimationFrame(log);
+    }
+    log();
+</script>
+</html>
