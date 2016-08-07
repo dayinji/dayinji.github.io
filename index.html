@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
 <head>
+    <title>Wiggle.js Demp -By dayinji</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <style>
         html,body {
             background: #2a2a2a;
@@ -61,6 +63,14 @@
         ppoint[1] = num[1];
         requestAnimationFrame(log);
     }
-    log();
+    canvas.addEventListener("touchmove", touchMove, false);
+    function touchMove(e) {
+        e.preventDefault();
+        var el = document.getElementsByTagName("canvas")[0];
+        var ctx = el.getContext("2d");
+        var touches = evt.changedTouches;
+        amp = dist([w/2, h/2], [touches[i].pageX, touches[i].pageY])*2;
+        wiggle.amp = amp;
+    }
 </script>
 </html>
