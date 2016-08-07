@@ -1,5 +1,5 @@
 ;(function () {
-	var Wiggle = function(amp, freq, ctx) {
+	var Wiggle = function(amp, freq, ctx, w, h) {
 		this.amp = amp;
 		this.interval = 1000/freq;
 		this.dimen = 2;
@@ -15,6 +15,8 @@
 			this.p3[i] = (Math.random()-0.5)*this.amp;
 		}
 		this.ctx = ctx;
+		this.w = w;
+		this.h = h;
 	};
 	Wiggle.prototype.getNum = function() {
 		var t = (Date.now() - this.startTime) / this.interval;
@@ -56,19 +58,19 @@
 
         this.ctx.fillStyle = "#ff4444";
         this.ctx.beginPath();
-        this.ctx.arc(this.p0[0]+450, this.p0[1]+200, 3, 0, 360);
+        this.ctx.arc(this.p0[0]+this.w/2, this.p0[1]+this.h/2, 3, 0, 360);
         this.ctx.closePath();
         this.ctx.fill();
         this.ctx.beginPath();
-        this.ctx.arc(this.p1[0]+450, this.p1[1]+200, 3, 0, 360);
+        this.ctx.arc(this.p1[0]+this.w/2, this.p1[1]+this.h/2, 3, 0, 360);
         this.ctx.closePath();
         this.ctx.fill();
         this.ctx.beginPath();
-        this.ctx.arc(this.p2[0]+450, this.p2[1]+200, 3, 0, 360);
+        this.ctx.arc(this.p2[0]+this.w/2, this.p2[1]+this.h/2, 3, 0, 360);
         this.ctx.closePath();
         this.ctx.fill();
         this.ctx.beginPath();
-        this.ctx.arc(this.p3[0]+450, this.p3[1]+200, 3, 0, 360);
+        this.ctx.arc(this.p3[0]+this.w/2, this.p3[1]+this.h/2, 3, 0, 360);
         this.ctx.closePath();
         this.ctx.fill();
 
@@ -76,13 +78,13 @@
 		this.ctx.lineWidth=1;
 		this.ctx.lineCap='square';
 		this.ctx.beginPath();
-		this.ctx.moveTo(this.p0[0]+450, this.p0[1]+200);
-		this.ctx.lineTo(this.p1[0]+450, this.p1[1]+200);
+		this.ctx.moveTo(this.p0[0]+this.w/2, this.p0[1]+this.h/2);
+		this.ctx.lineTo(this.p1[0]+this.w/2, this.p1[1]+this.h/2);
 		this.ctx.stroke();
 		this.ctx.closePath();
 		this.ctx.beginPath();
-		this.ctx.moveTo(this.p2[0]+450, this.p2[1]+200);
-		this.ctx.lineTo(this.p3[0]+450, this.p3[1]+200);
+		this.ctx.moveTo(this.p2[0]+this.w/2, this.p2[1]+this.h/2);
+		this.ctx.lineTo(this.p3[0]+this.w/2, this.p3[1]+this.h/2);
 		this.ctx.stroke();
 		this.ctx.closePath();
 	};
